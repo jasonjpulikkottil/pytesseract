@@ -9,11 +9,15 @@ import os
 MODEL_PATH = "model_data"
 os.makedirs(MODEL_PATH, exist_ok=True)
 
-# Initialize EasyOCR Reader with Malayalam & English
-reader = easyocr.Reader(["en"], model_storage_directory=MODEL_PATH)
+# Initialize EasyOCR Reader with English language only for testing
+try:
+    reader = easyocr.Reader(["en"], model_storage_directory=MODEL_PATH)
+    st.write("EasyOCR initialized successfully.")
+except Exception as e:
+    st.write("Error initializing EasyOCR:", e)
 
 # Streamlit App Title
-st.title("📄 Image to Text Converter (OCR) - Malayalam & English")
+st.title("📄 Image to Text Converter (OCR)")
 
 # File uploader for image input
 uploaded_file = st.file_uploader("Upload an Image", type=["png", "jpg", "jpeg"])
