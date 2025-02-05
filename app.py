@@ -11,8 +11,8 @@ os.makedirs(MODEL_PATH, exist_ok=True)
 
 # Initialize EasyOCR Reader with English language only for testing
 try:
-    reader = easyocr.Reader(["en"], model_storage_directory=MODEL_PATH)
-    st.write("EasyOCR initialized successfully.")
+    reader = easyocr.Reader(["en","ml"], model_storage_directory=MODEL_PATH)
+    st.write("OCR initialized successfully.")
 except Exception as e:
     st.write("Error initializing EasyOCR:", e)
 
