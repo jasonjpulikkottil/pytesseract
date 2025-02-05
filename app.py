@@ -10,7 +10,7 @@ MODEL_PATH = "model_data"
 os.makedirs(MODEL_PATH, exist_ok=True)
 
 # Initialize EasyOCR Reader with Malayalam & English
-reader = easyocr.Reader(["en", "hi"], model_storage_directory=MODEL_PATH)
+reader = easyocr.Reader(["en"], model_storage_directory=MODEL_PATH)
 
 # Streamlit App Title
 st.title("📄 Image to Text Converter (OCR) - Malayalam & English")
