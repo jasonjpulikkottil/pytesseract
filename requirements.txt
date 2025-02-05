@@ -1,7 +1,6 @@
-pytesseract
-opencv-python
-pillow
 streamlit
+pytesseract
+opencv-python-headless
+pillow
 numpy
-opencv-python
 pyngrok
