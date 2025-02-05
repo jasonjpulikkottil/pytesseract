@@ -21,7 +21,7 @@ def download_tesseract():
     pytesseract.pytesseract.tesseract_cmd = os.path.abspath(tesseract_path)
 
 # Run the function to ensure Tesseract is installed
-download_tesseract()
+# download_tesseract()
 
 # Streamlit App Title
 st.title("📄 Image to Text Converter (OCR)")
