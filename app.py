@@ -3,12 +3,17 @@ import easyocr
 import numpy as np
 import cv2
 from PIL import Image
+import os
 
-# Initialize EasyOCR Reader
-reader = easyocr.Reader(["en"])  # You can add languages like ["en", "hi", "ml"]
+# Ensure the model is stored in the correct directory
+MODEL_PATH = "model_data"
+os.makedirs(MODEL_PATH, exist_ok=True)
+
+# Initialize EasyOCR Reader with Malayalam & English
+reader = easyocr.Reader(["en", "ml"], model_storage_directory=MODEL_PATH)
 
 # Streamlit App Title
-st.title("📄 Image to Text Converter (OCR)")
+st.title("📄 Image to Text Converter (OCR) - Malayalam & English")
 
 # File uploader for image input
 uploaded_file = st.file_uploader("Upload an Image", type=["png", "jpg", "jpeg"])
