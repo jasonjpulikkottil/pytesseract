@@ -1,11 +1,10 @@
-
 import streamlit as st
 import cv2
 import pytesseract
 import numpy as np
 from PIL import Image
 
-# Streamlit App Title
+# Title of the Streamlit App
 st.title("📄 Image to Text Converter (OCR)")
 
 # File uploader for image input
@@ -15,7 +14,9 @@ if uploaded_file is not None:
     # Convert image to OpenCV format
     image = Image.open(uploaded_file)
     img_array = np.array(image)  # Convert PIL image to NumPy array
-    gray = cv2.cvtColor(img_array, cv2.COLOR_BGR2GRAY)  # Convert to grayscale
+
+    # Convert to grayscale for better OCR results
+    gray = cv2.cvtColor(img_array, cv2.COLOR_RGB2GRAY)
 
     # Display the uploaded image
     st.image(image, caption="Uploaded Image", use_column_width=True)
