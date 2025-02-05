@@ -1,27 +1,11 @@
 import streamlit as st
-import cv2
-import pytesseract
+import easyocr
 import numpy as np
+import cv2
 from PIL import Image
-import os
-import subprocess
 
-# Function to download Tesseract OCR on Streamlit Cloud
-def download_tesseract():
-    tesseract_url = "https://github.com/tesseract-ocr/tesseract/releases/download/5.3.3/tesseract-5.3.3-linux-x86_64.AppImage"
-    tesseract_path = "tesseract"
-
-    # Download Tesseract binary if not already downloaded
-    if not os.path.exists(tesseract_path):
-        st.info("Downloading Tesseract OCR... Please wait ⏳")
-        subprocess.run(["wget", tesseract_url, "-O", tesseract_path])
-        subprocess.run(["chmod", "+x", tesseract_path])
-
-    # Set Tesseract path for pytesseract
-    pytesseract.pytesseract.tesseract_cmd = os.path.abspath(tesseract_path)
-
-# Run the function to ensure Tesseract is installed
-# download_tesseract()
+# Initialize EasyOCR Reader
+reader = easyocr.Reader(["en"])  # You can add languages like ["en", "hi", "ml"]
 
 # Streamlit App Title
 st.title("📄 Image to Text Converter (OCR)")
@@ -40,9 +24,12 @@ if uploaded_file is not None:
     # Display the uploaded image
     st.image(image, caption="Uploaded Image", use_container_width=True)
 
-    # Extract text using Tesseract OCR
-    text = pytesseract.image_to_string(gray)
+    # Extract text using EasyOCR
+    result = reader.readtext(gray, detail=0)
+
+    # Join extracted text
+    extracted_text = "\n".join(result)
 
     # Display extracted text
     st.subheader("Extracted Text:")
-    st.text_area("Text Output", text, height=200)
+    st.text_area("Text Output", extracted_text, height=200)
