@@ -1,5 +1,5 @@
 
-# 📄 Image to Text Converter (OCR) using EasyOCR
+# 📄 Image to Text Converter (OCR) 
 
 This project demonstrates an OCR (Optical Character Recognition) application built with **EasyOCR** and **Streamlit**. The app allows users to upload an image and extracts the text from the image using OCR technology.
 
